@@ -44,25 +44,25 @@ echo Time is `date`
 echo Working directory is ${PBS_O_WORKDIR}
 cd ${PBS_O_WORKDIR}
 
-#gatk --java-options "-Xmx24g"  PathSeqBwaSpark  \
-#     --paired-input ${SAMPLE}_paired.bam \
-#     --unpaired-input ${SAMPLE}_unpaired.bam \
-#     --paired-output ${SAMPLE}_bwa_paired.bam \
-#     --unpaired-output ${SAMPLE}_bwa_unpaired.bam \
-#     --microbe-fasta pathseq_microbe_complete.fa \
-#     --microbe-bwa-image pathseq_microbe_complete.fa.img \
-#     --TMP_DIR ${PBS_O_WORKDIR}
+gatk --java-options "-Xmx24g"  PathSeqBwaSpark  \
+     --paired-input ${SAMPLE}_paired.bam \
+     --unpaired-input ${SAMPLE}_unpaired.bam \
+     --paired-output ${SAMPLE}_bwa_paired.bam \
+     --unpaired-output ${SAMPLE}_bwa_unpaired.bam \
+     --microbe-fasta pathseq_microbe_complete.fa \
+     --microbe-bwa-image pathseq_microbe_complete.fa.img \
+     --TMP_DIR ${PBS_O_WORKDIR}
 
 
 #samtools index ${SAMPLE}_bwa_paired.bam
 #samtools index ${SAMPLE}_unpaired.bam
 
-gatk --java-options "-Xmx24g" PathSeqScoreSpark  \
-     --paired-input ${SAMPLE}_bwa_paired.bam \
-     --unpaired-input /g/data3/ba08/pathseq/${SAMPLE}_bwa_unpaired.bam \
-     --taxonomy-file /g/data3/ba08/pathseq/pathseq_taxonomy.db \
-     --scores-output ${SAMPLE}_scores.txt \
-     --output ${SAMPLE}_output_reads.bam \
-     --min-score-identity 0.90 \
-     --identity-margin 0.02
-     --TMP_DIR ${PBS_O_WORKDIR}
+#gatk --java-options "-Xmx24g" PathSeqScoreSpark  \
+#     --paired-input ${SAMPLE}_bwa_paired.bam \
+#     --unpaired-input /g/data3/ba08/pathseq/${SAMPLE}_bwa_unpaired.bam \
+#     --taxonomy-file /g/data3/ba08/pathseq/pathseq_taxonomy.db \
+#     --scores-output ${SAMPLE}_scores.txt \
+#     --output ${SAMPLE}_output_reads.bam \
+#     --min-score-identity 0.90 \
+#     --identity-margin 0.02
+#     --TMP_DIR ${PBS_O_WORKDIR}
